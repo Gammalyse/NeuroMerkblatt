@@ -49,6 +49,7 @@
 % \usepackage[xindy]{imakeidx}
 % \makeindex
 % \setlength{\mathindent}{0pt}
+\newcommand*\mean[1]{\overline{#1}}
 
 \date{01/23/15}
 
@@ -60,19 +61,35 @@
         \begin{itemize}
         \item CLIAF (Neftci 2011):
             \begin{flalign*}
-            C\frac{\mathrm d}{\mathrm d x}V_{m} &= I(t)-\beta+I_{fb}e^{\frac
-            {\kappa}{U_{T}}(V_{m}-V_{th})}&
+            C_{m}\frac{\mathrm d}{\mathrm d x}V_{m} &= I_{in}(t)-\beta+I_{fb}e^
+            {\frac{\kappa}{U_{T}}(V_{m}-V_{th})}&
             \end{flalign*}
+        \item Axon-Hillock IAF (Mead 1989)
+            \begin{flalign*}
+            C_{m}\frac{\mathrm d}{\mathrm d x}V_{m} &= I_{in}(t)-\beta,
+            \quad V_m(t)\in(0,\varTheta)&
+            \end{flalign*}
+        \item Hodgkin-Huxley ()
+        \item AdEx ()
+        \end{itemize}
+
+    \section{Einheiten}
+        \begin{itemize}
+        \item $\beta$ - Konstanter Leckstrom
+        \item $I_{in}(t)$ - Neuronaler Inputstrom
         \end{itemize}
 
     \section{Abkürzungen}
         AER - Address Event Representation\\
+        CCN - Cooperative and Competitive Network\\
         CLIAF - Constant Leaky Integrate And Fire neuron\\
         DNC - Digital Network Chip\\
+        DPI - Differential Pair Integrator\\
         FPGA - Field Programmable Gate Array\\
         HH - Hodgkin Huxley neuron model\\
         HICANN - High Input Count Analog Neural Network\\
         IAF - Integrate-and-fire neuron model\\
+        ISI - InterSpike Intervall\\
         LTD - Long Term Depression\\
         LTP - Long Term Potention\\
         LTU - Linear Threshold Unit\\
@@ -128,8 +145,10 @@
             \item algorithm: standart parameter translation + determining bias
                   voltage
             \item LTU $\leftarrow\rightarrow$ CLIAF model $\leftarrow\rightarrow$
-                  CLIAF VLSI
-            \item
+                  VLSI spiking neuron 
+            \item Equations (2.5)+(2.6) as complete approximated description
+            \item Equation (2.7)+(2.8) as bridge between LTUs and silicon neurons
+            \item Equation (2.9)+(2.8) as specified CCN transfer output
             \end{itemize}
 
         \subsection{Neftci 2013: Synthesizing cognition in neuromorphic
@@ -178,6 +197,17 @@
               Konduktanz
         \item LTUs sind simple Modelle, die keine Spikezeitinformation und
               nichtlineare Elemente beinhalten
+        \item der positive Feedback von CLIAF kann vernachlässigt werden, wenn
+              der Threshold so gesetzt ist, das der ISI gleich bleibt
+        \item man kann $\tau_{refrac}$ und Pulsweite ignorieren falls beide $\ll
+              T_{ISI}$
+        \item falls $\mean{T_{ISI}}\ll\tau_{syn}$ fluktuiert der Synapsenstrom um
+              konstanten Wert $\sim w, f_{ISI}$
+        \item Synapsen werden oft als Tiefpässe realisiert
+        \item viele Annahmen bei Berechnungen $\rightarrow$ verringerte
+              Komplexität $\rightarrow$ analystisch lösbar
+        \item Nicht vorhandene Parameter mit nichtlinearen Abhängigkeiten müssen
+              experimentell bestimmt werden
         \end{itemize}
 
     \section{Kleine nützliche Wortsammlung}
