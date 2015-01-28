@@ -1,0 +1,188 @@
+\documentclass[a4paper,ngerman,10pt]{article}
+
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{calc}
+\usepackage{fixltx2e}
+\usepackage[ngerman]{babel}
+\usepackage[dvipsnames, table,rgb]{xcolor}
+\usepackage{fontenc}
+\usepackage{graphicx}
+\usepackage[]{graphicx}
+\usepackage[left=2.5cm, right=2.5cm, top=3cm, bottom=4cm]{geometry}
+\usepackage{amsmath}
+% \usepackage{epstopdf}
+% \usepackage{float}
+% \usepackage{flafter}
+% \usepackage[section]{placeins}
+% \usepackage{caption}
+% \usepackage{subcaption}
+% \usepackage[fleqn]{amsmath}
+% \usepackage[all, error]{onlyamsmath}
+% \usepackage{booktabs}
+% \usepackage{ltxtable}
+% \usepackage{url}
+% \usepackage{enumitem}
+% \usepackage{ragged2e}
+% \usepackage{tikz}
+% \usepackage{pgf}
+% \usepackage{cite}
+% \usepackage{setspace}
+% \usepackage[automark, komastyle, nouppercase]{scrpage2}
+% \usepackage{pdfpages}
+% \usepackage{microtype}
+% \usepackage{listliketab}
+% \usepackage{booktabs}
+% \usepackage{verbatim}
+% \usepackage{multirow}
+% \usepackage{todonotetes}
+% \usepackage{tikz}
+% \usepackage{subfigtes}
+% \usepackage{tikz}
+% \usepackage{subfigs}
+% \usepackage{tikz}
+% \usepackage{subfig}
+% \usepackage{listingsutf8}
+% \usepackage{color}
+% \usepackage{amsmath}
+% \usepackage[titletoc]{appendix}
+% \usepackage[xindy]{imakeidx}
+% \makeindex
+% \setlength{\mathindent}{0pt}
+
+\date{01/23/15}
+
+\begin{document}
+
+    \tableofcontents
+    \newpage
+    \section{Formeln}
+        \begin{itemize}
+        \item CLIAF (Neftci 2011):
+            \begin{flalign*}
+            C\frac{\mathrm d}{\mathrm d x}V_{m} &= I(t)-\beta+I_{fb}e^{\frac
+            {\kappa}{U_{T}}(V_{m}-V_{th})}&
+            \end{flalign*}
+        \end{itemize}
+
+    \section{Abkürzungen}
+        AER - Address Event Representation\\
+        CLIAF - Constant Leaky Integrate And Fire neuron\\
+        DNC - Digital Network Chip\\
+        FPGA - Field Programmable Gate Array\\
+        HH - Hodgkin Huxley neuron model\\
+        HICANN - High Input Count Analog Neural Network\\
+        IAF - Integrate-and-fire neuron model\\
+        LTD - Long Term Depression\\
+        LTP - Long Term Potention\\
+        LTU - Linear Threshold Unit\\
+        STDP - Spike Timing Dependent Plasticity\\
+        sWTA - Soft Winner-Take-All Network
+
+    \section{Definitionen}
+        \begin{itemize}
+        \item AER: Communication Protocoll which describes spikes from sources
+        \item overconstrained: equations outnumber the unknowns
+        \end{itemize}
+
+    \section{Notizen zu wichtigen Arbeiten}
+
+        \subsection{Neftci 2010: A Device Mismatch Compensation Method for VLSI
+            Neural Networks}
+            \begin{itemize}
+            \item transistor properties mismatch as major VLSI problem
+            \item mismatch compensation algorithm through connectivity
+            \item no layout disadvantage (no extra HW memory)
+            \item exploits Address-Event Representation
+            \item metaplasticity as homeostatic mechanism for homogeneous
+                  population response
+            \item change connectivity profile (\# or \%) to normalize response
+                  strength
+            \item test: sWTA as possible general purpose structure
+            \item synaptic scaling method to normalize response of VLSI sWTA with
+                  HW respresentation and constraints (e.g. spiking output)
+            \item synaptic circuits with linear filter (1st order) to summarize
+                  different sources
+            \item 1 synapse emulates synapses with same time constant and weight
+                  $\rightarrow$ modulates coupling strength between populations
+            \item test of theory with sWTA and an compensation matrix
+                  $\rightarrow$ up to 40\% less variability and same mean in
+                  transfer function
+            \item fig 1: bumps getting homogeneous after compensation (reduced
+                  mismatch)
+            \item increased discrimination performance: generally better win rate
+                  of stronger input population
+            \end{itemize}
+
+        \subsection{Neftci 2011: A Systematic Method for Configuring VLSI
+            Networks of Spiking Neurons}
+            \begin{itemize}
+            \item subthreshold transistor $\rightarrow$ small signal
+                  $\rightarrow$ prone to noise and mismatch
+            \item automatic bidirectional parameter mapping technique (high-level
+                  NN simulation $\leftarrow\rightarrow$ VLSI)
+            \item algorithm is general and usable if LTU behaviour approximated
+                  in circuit (IAF for example)
+            \item approx possible if a regime exists in which neurons have
+                  threshold-activation linear function
+            \item algorithm: standart parameter translation + determining bias
+                  voltage
+            \item LTU $\leftarrow\rightarrow$ CLIAF model $\leftarrow\rightarrow$
+                  CLIAF VLSI
+            \item
+            \end{itemize}
+
+        \subsection{Neftci 2013: Synthesizing cognition in neuromorphic
+            electronic systems}
+
+        \subsection{Sheik 2011: Systematic configuration and automatic tuning of
+            neuromorphic Systems}
+
+        \subsection{Gao 2012: Dynamical System Guided Mapping of Quantitative
+            Neuronal Models Onto Neuromorphic Hardware}
+
+        \subsection{Grassia 2011: Tunable neuromimetic integrated system for
+            emulating cortical neuron models}
+
+        \subsection{Brüderle Dissertation 2009: Neuroscientific Modeling with a
+            Mixed-Signal VLSI Hardware System}
+
+        \subsection{Brüderle 2011: A Comprehensive Workflow for General-Purpose
+            Neural Modeling with Highly Configurable Neuromorphic Hardware
+            Systems}
+
+        \subsection{Schwartz Dissertation 2011: Reproducing Biologically
+            Realistic Regimes on a Highly-Accelerated Neuromorphic Hardware
+            System}
+
+    \section{Mögliche wichtige Arbeiten}
+        \begin{itemize}
+        \item determining unknown parameters and state variables of physical
+              systems by measurements of a limited number of observables
+              (parameter estimation methods)
+        \item Brillinger 2008
+        \item Keat, Reinagel, Reid, Meister 2001
+        \item Paninski, Pillow, Simoncelli 2004
+        \item Okatan, Wilson, Brown 2005
+        \item Huys, Ahrens, Paninski 2006
+        \item Abarbanel, Creveling, Farsian, Kostuk 2009
+        \end{itemize}
+
+    \section{Notizen}
+        \begin{itemize}
+        \item iterative Parametersuche kann durch Heuristik verbessert werden
+              \\(Russel, Orchard, Etienne-Cummings 2007)
+        \item IAF sind strombasiert
+        \item Das erste IAF Modell ist das Axon-Hillock Modell von Mead
+        \item Das A-H-Modell nutzt einen konstanten Strom als leak statt
+              Konduktanz
+        \item LTUs sind simple Modelle, die keine Spikezeitinformation und
+              nichtlineare Elemente beinhalten
+        \end{itemize}
+
+    \section{Kleine nützliche Wortsammlung}
+        \begin{itemize}
+        \item parameter estimation/extraction/translation/mapping
+        \end{itemize}
+
+\end{document}
