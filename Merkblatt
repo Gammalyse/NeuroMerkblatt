@@ -85,6 +85,7 @@
         CLIAF - Constant Leaky Integrate And Fire neuron\\
         DNC - Digital Network Chip\\
         DPI - Differential Pair Integrator\\
+        EPSC - Excitatory Postsynaptic Current\\
         FPGA - Field Programmable Gate Array\\
         HH - Hodgkin Huxley neuron model\\
         HICANN - High Input Count Analog Neural Network\\
@@ -100,6 +101,14 @@
         \begin{itemize}
         \item AER: Communication Protocoll which describes spikes from sources
         \item overconstrained: equations outnumber the unknowns
+        \item raster plot: spikes of neurons plotted in time
+        \end{itemize}
+
+    \section{Bekannte Forscher}
+        \begin{itemize}
+        \item Emre Neftci, Elisabetta Chicca, Giacomo Indiveri, Rodney J. Douglas
+        \item Kwabena Boahen
+        \item
         \end{itemize}
 
     \section{Notizen zu wichtigen Arbeiten}
@@ -134,25 +143,52 @@
         \subsection{Neftci 2011: A Systematic Method for Configuring VLSI
             Networks of Spiking Neurons}
             \begin{itemize}
-            \item subthreshold transistor $\rightarrow$ small signal
+            \item motivation: subthreshold transistor $\rightarrow$ small signal
                   $\rightarrow$ prone to noise and mismatch
+            \item motivation: high-lvl program language needed $\rightarrow$
+                  auto determining of biases taking mismatch in account
+            \item motivation: determining bias voltages corresponding to model
+                  params through iterative search $\rightarrow$ resource and
+                  time consuming \& no predictive power (must be executed afer
+                  every param change)
             \item automatic bidirectional parameter mapping technique (high-level
                   NN simulation $\leftarrow\rightarrow$ VLSI)
             \item algorithm is general and usable if LTU behaviour approximated
-                  in circuit (IAF for example)
-            \item approx possible if a regime exists in which neurons have
-                  threshold-activation linear function
+                  in circuit (IAF for example) / if regime that can be modeled
+                  using mean-field approach
+            \item approximation possible if a regime exists in which neurons have
+                  threshold-activation linear function (e.g. CLIAF)
             \item algorithm: standart parameter translation + determining bias
-                  voltage
+                  voltage (one calibration for futuer uses)
             \item LTU $\leftarrow\rightarrow$ CLIAF model $\leftarrow\rightarrow$
-                  VLSI spiking neuron 
+                  VLSI spiking neuron
+            \item drawback: to calibrate and build parameter translation detailed
+                  knowledge of circuit needed
+            \item drawback: LTU approximation only works if $\tau_{syn}\gg
+                  T_{ISI}$
             \item Equations (2.5)+(2.6) as complete approximated description
             \item Equation (2.7)+(2.8) as bridge between LTUs and silicon neurons
             \item Equation (2.9)+(2.8) as specified CCN transfer output
+            \item LTU approximation is accurate for setting gain and predicting
+                  steady state mean firing rate
+            \item $\tau$ of hardware and software identical
+            \item exact VLSI sWTA tuning possible
             \end{itemize}
 
         \subsection{Neftci 2013: Synthesizing cognition in neuromorphic
             electronic systems}
+            \begin{itemize}
+            \item motivation: reliable behavioural dynamics of noisy neurons
+                  needed
+            \item (1) mapping hardware $\rightarrow$ abstract model (2) create
+                  sWTA (3) create sparse connections between populations to form
+                  soft state machine
+            \item reliable processing through active gain, signal restoration
+                  (memory), multistability (binary)
+            \item neuromorphic agent as autonomous entity, observes (sensors)
+                  and acts (effectors) on context/stimuli, strives for abstract
+                  goal
+            \end{itemize}
 
         \subsection{Sheik 2011: Systematic configuration and automatic tuning of
             neuromorphic Systems}
@@ -208,11 +244,28 @@
               Komplexität $\rightarrow$ analystisch lösbar
         \item Nicht vorhandene Parameter mit nichtlinearen Abhängigkeiten müssen
               experimentell bestimmt werden
+        \item Arten von Kalibration: Brute-force, ad-hoc, software (mismatch
+              unbeachtet), suche um manuell bestimmte Operating Points, hybride
+        \item Fehlerarten: Hardware-Nonlinearities, Transistor Mismatch,
+              Kalibrationsungenauigkeiten
         \end{itemize}
 
     \section{Kleine nützliche Wortsammlung}
         \begin{itemize}
         \item parameter estimation/extraction/translation/mapping
+        \item parameter space
+        \item population activity measurements
+        \item abstract computational layer
+
+        \item derivative - Ableitung
+        \item inferred - von etw. abgeleited
+        \item prohibitive - untragbar
+        \item regime - Charakteristik
+        \item coherently - folgerichtig, schlüssig, kohärent
+
+        \item cognition - Wahrnehmung, Erkennung
+        \item Synthese - Zusammenführung zu einer Einheit oder künstliche
+              Herstellung
         \end{itemize}
 
 \end{document}
