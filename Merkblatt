@@ -183,11 +183,15 @@
             \item (1) mapping hardware $\rightarrow$ abstract model (2) create
                   sWTA (3) create sparse connections between populations to form
                   soft state machine
-            \item reliable processing through active gain, signal restoration
-                  (memory), multistability (binary)
+            \item reliable state processing through active gain, signal
+                  restoration (memory), multistability (binary)
             \item neuromorphic agent as autonomous entity, observes (sensors)
                   and acts (effectors) on context/stimuli, strives for abstract
                   goal
+            \item behavioural dynamics instead of programming logic
+            \item 3 layers: high-level behaviour model, abstract computational
+                  (sWTA), analog-digital hardware
+            \item 
             \end{itemize}
 
         \subsection{Sheik 2011: Systematic configuration and automatic tuning of
@@ -256,6 +260,8 @@
         \item parameter space
         \item population activity measurements
         \item abstract computational layer
+        \item mean field approach
+        \item context-dependent task
 
         \item derivative - Ableitung
         \item inferred - von etw. abgeleited
