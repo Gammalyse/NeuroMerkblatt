@@ -59,15 +59,15 @@
     \newpage
     \section{Formeln}
         \begin{itemize}
-        \item CLIAF (Neftci 2011):
-            \begin{flalign*}
-            C_{m}\frac{\mathrm d}{\mathrm d x}V_{m} &= I_{in}(t)-\beta+I_{fb}e^
-            {\frac{\kappa}{U_{T}}(V_{m}-V_{th})}&
-            \end{flalign*}
         \item Axon-Hillock IAF (Mead 1989)
             \begin{flalign*}
             C_{m}\frac{\mathrm d}{\mathrm d x}V_{m} &= I_{in}(t)-\beta,
             \quad V_m(t)\in(0,\varTheta)&
+            \end{flalign*}
+        \item CLIAF (Neftci 2011):
+            \begin{flalign*}
+            C_{m}\frac{\mathrm d}{\mathrm d x}V_{m} &= I_{in}(t)-\beta+I_{fb}e^
+            {\frac{\kappa}{U_{T}}(V_{m}-V_{th})}&
             \end{flalign*}
         \item Hodgkin-Huxley ()
         \item AdEx ()
@@ -94,6 +94,8 @@
         LTD - Long Term Depression\\
         LTP - Long Term Potention\\
         LTU - Linear Threshold Unit\\
+        SAC - Selective Attention Chip\\
+        SSM - Soft State Machine\\
         STDP - Spike Timing Dependent Plasticity\\
         sWTA - Soft Winner-Take-All Network
 
@@ -105,11 +107,25 @@
         \end{itemize}
 
     \section{Bekannte Forscher}
-        \begin{itemize}
-        \item Emre Neftci, Elisabetta Chicca, Giacomo Indiveri, Rodney J. Douglas
-        \item Kwabena Boahen
-        \item
-        \end{itemize}
+        \begin{description}
+        \item[La Jolla] Emre Neftci
+        \item[Bielefeld] Elisabetta Chicca, Rodney J. Douglas
+        \item[Zürich] Giacomo Indiveri, Christian G Mayr
+        \item[Heidelberg] Karlheinz Meier, Daniel Brüderle. Johannes Schemmel,
+              Thomas Pfeil
+        \item[Stockholm] Anders Lansner, Jeanette Hellgren Kotaleski
+        \item[Stockholm INCF] Sean L Hill
+        \item[Stanford] Kwabena Boahen
+        \item[Gif-sur-Yvette CNRS] Andrew P Davison (pyNN)
+        \item[Talence] Sylvie Renaud
+        \item[Lausanne EPFL] Henry Makram, Eilif Benjamin Muller,
+             Wulfram Gerstner,Marc-Oliver Gewaltig (Nest)
+        \item[Jülich] Markus Diesmann, Moritz Helias, Jochen Martin Eppler
+        \item[Olso] Jan G Bjaalie ( Neuroinformatics)
+        \item[Edinburgh] James A Bednar
+        \item[New Haven, Yale] Michael Hines
+        \item[Other] Carver Mead, Misha Maowald, Lynn Conway
+        \end{description}
 
     \section{Notizen zu wichtigen Arbeiten}
 
@@ -180,22 +196,47 @@
             \begin{itemize}
             \item motivation: reliable behavioural dynamics of noisy neurons
                   needed
-            \item (1) mapping hardware $\rightarrow$ abstract model (2) create
-                  sWTA (3) create sparse connections between populations to form
-                  soft state machine
-            \item reliable state processing through active gain, signal
-                  restoration (memory), multistability (binary)
             \item neuromorphic agent as autonomous entity, observes (sensors)
                   and acts (effectors) on context/stimuli, strives for abstract
                   goal
-            \item behavioural dynamics instead of programming logic
+            \item behavioural dynamics needed instead of programming logic
             \item 3 layers: high-level behaviour model, abstract computational
                   (sWTA), analog-digital hardware
-            \item 
+            \item (1) mapping hardware $\rightarrow$ abstract model (2) create
+                  sWTA (3) create sparse connections between populations to form
+                  soft state machine (SSM)
+            \item reliable state processing through active gain, signal
+                  restoration (memory), multistability (binary)
+            \item 3 sWTA networks: state, state mapping, output through mapping
+            \item visual task: detect in visual field horizontal bar
+                  L$\rightarrow$R or vertical bar R$\rightarrow$L and give output
+            \item visual field is seperated into left, right, 2 borders and 2
+                  cues
+            \item (1) silicon retina detects signal in cue and decides feature
+                  map (horizontal LR or vertical RL)
+            \item (2) feature map events mapped to selective attention chip (SAC)
+            \item (3) SAC activates spiking neuron on visual field position
+            \item (4) SSM reacts with state, transition and output sWTA
+                  stimulation
+            \item paper shows simplifying programming of high-lvl behaviour and
+                  reliable processing
             \end{itemize}
 
         \subsection{Sheik 2011: Systematic configuration and automatic tuning of
             neuromorphic Systems}
+            \begin{itemize}
+            \item modular configuration framework for multi-chip neuromorphic
+                  VLSI and automatic mapping from parameters to circuit biases
+                  \begin{itemize}
+                  \item uses generic models for parameter translation routines
+                  \item does not require detailed knowledge of hardware
+                  \item can optimize search and evaluate effectiveness of
+                        parameter translations
+                  \end{itemize}
+            \item relationship between parameters model, software, hardware
+                  non-linear
+            \item
+            \end{itemize}
 
         \subsection{Gao 2012: Dynamical System Guided Mapping of Quantitative
             Neuronal Models Onto Neuromorphic Hardware}
@@ -218,7 +259,7 @@
         \begin{itemize}
         \item determining unknown parameters and state variables of physical
               systems by measurements of a limited number of observables
-              (parameter estimation methods)
+              (parameter estimation methods) from Neftci 2010
         \item Brillinger 2008
         \item Keat, Reinagel, Reid, Meister 2001
         \item Paninski, Pillow, Simoncelli 2004
@@ -233,7 +274,7 @@
               \\(Russel, Orchard, Etienne-Cummings 2007)
         \item IAF sind strombasiert
         \item Das erste IAF Modell ist das Axon-Hillock Modell von Mead
-        \item Das A-H-Modell nutzt einen konstanten Strom als leak statt
+        \item Das Axon-Hillock-Modell nutzt einen konstanten Strom als leak statt
               Konduktanz
         \item LTUs sind simple Modelle, die keine Spikezeitinformation und
               nichtlineare Elemente beinhalten
@@ -248,10 +289,18 @@
               Komplexität $\rightarrow$ analystisch lösbar
         \item Nicht vorhandene Parameter mit nichtlinearen Abhängigkeiten müssen
               experimentell bestimmt werden
-        \item Arten von Kalibration: Brute-force, ad-hoc, software (mismatch
-              unbeachtet), suche um manuell bestimmte Operating Points, hybride
-        \item Fehlerarten: Hardware-Nonlinearities, Transistor Mismatch,
+        \item Arten von Kalibration:
+              \begin{enumerate}
+              \item Brute-force (beschleunigt, Brüderle) (heuristisch, ad-hoc)
+              \item model-basierte LTU-approximation (Neftci)
+              \item suche um manuell bestimmte Operating Points (Boahen)
+              \item software (mismatch unbeachtet)
+              \item hybride
+              \end{enumerate}
+        \item Fehlerarten: Hardware-Nichtlinearitäten, Transistor Mismatch,
               Kalibrationsungenauigkeiten
+        \item ca. 2010: automatisiertes VLSI Mapping noch heuristische Ad-hoc
+              Kalibrationsroutinen
         \end{itemize}
 
     \section{Kleine nützliche Wortsammlung}
