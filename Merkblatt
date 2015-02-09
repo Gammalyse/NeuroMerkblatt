@@ -83,6 +83,7 @@
         AER - Address Event Representation\\
         CCN - Cooperative and Competitive Network\\
         CLIAF - Constant Leaky Integrate And Fire neuron\\
+        DAC - Digital to Analog Converter\\
         DNC - Digital Network Chip\\
         DPI - Differential Pair Integrator\\
         EPSC - Excitatory Postsynaptic Current\\
@@ -230,8 +231,11 @@
                   \begin{itemize}
                   \item uses generic models for parameter translation routines
                   \item does not require detailed knowledge of hardware
-                  \item can optimize search and evaluate effectiveness of
-                        parameter translations
+                  \item can optimize parameter state search and evaluate
+                        effectiveness of parameter translations
+                  \item pyNCS: hardware interface and model abstraction
+                  \item pyTune: defines high-lvl params as functions of high- or
+                        low-lvl params
                   \end{itemize}
             \item relationship between parameters model, software, hardware
                   non-linear
@@ -313,10 +317,11 @@
         \item context-dependent task
 
         \item derivative - Ableitung
-        \item inferred - von etw. abgeleited
+        \item inferred - von etw. abgeleitet
         \item prohibitive - untragbar
         \item regime - Charakteristik
         \item coherently - folgerichtig, schlüssig, kohärent
+        \item comprise - beinhalten
 
         \item cognition - Wahrnehmung, Erkennung
         \item Synthese - Zusammenführung zu einer Einheit oder künstliche
