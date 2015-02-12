@@ -26,7 +26,7 @@
 % \usepackage{ragged2e}
 % \usepackage{tikz}
 % \usepackage{pgf}
-% \usepackage{cite}
+\usepackage{cite}
 % \usepackage{setspace}
 % \usepackage[automark, komastyle, nouppercase]{scrpage2}
 % \usepackage{pdfpages}
@@ -59,18 +59,39 @@
     \newpage
     \section{Formeln}
         \begin{itemize}
-        \item Axon-Hillock IAF (Mead 1989)
+        \item Axon-Hillock IAF (Mead 1989):
             \begin{flalign*}
-            C_{m}\frac{\mathrm d}{\mathrm d x}V_{m} &= I_{in}(t)-\beta,
+            C_{m}\frac{\mathrm d}{\mathrm d t}V_{m} &= I_{in}(t)-\beta,
             \quad V_m(t)\in(0,\varTheta)&
             \end{flalign*}
         \item CLIAF (Neftci 2011):
             \begin{flalign*}
-            C_{m}\frac{\mathrm d}{\mathrm d x}V_{m} &= I_{in}(t)-\beta+I_{fb}e^
+            C_{m}\frac{\mathrm d}{\mathrm d t}V_{m} &= I_{in}(t)-\beta+I_{fb}e^
             {\frac{\kappa}{U_{T}}(V_{m}-V_{th})}&
             \end{flalign*}
+        \item Quadratic IAF (Gerstner 2002):
+            \begin{flalign*}
+            \tau_{m}\frac{\mathrm d}{\mathrm d t}V_{m} &= a_{0}(u-u_{rest})(u-
+            u_{thresh})+RI,\quad a_{0}>0&
+            \end{flalign*}
+        \item AdEx IAF ()
+            \begin{flalign*}
+            (1)\quad-C_{m}\frac{\mathrm d}{\mathrm d t}V_{m} &= g_1(V_m-E_1)-g_1
+            \Delta_te^{\frac{V_m-V_t}{\Delta_t}}+w&\\
+            &\qquad+g_e(t)(V_m-E_e)&\\
+            &\qquad+g_i(t)(V_m-E_i)&\\
+            (2)\qquad-\tau_w\frac{\mathrm d}{\mathrm d t}w &= w-a(V_m-E_1),\quad
+            \end{flalign*}
         \item Hodgkin-Huxley ()
-        \item AdEx ()
+            \begin{flalign*}
+            (1)\qquad\ C_m\frac{\mathrm d}{\mathrm d t}V_m &= I
+            -\overbrace{g_Kn^4(V_m-E_K)}^\text{$I_K$}
+            -\overbrace{g_{Na}m^3h(V_m-E_{Na})}^\text{$I_{Na}$}
+            -\overbrace{g_L(V_m-E_L)}^\text{$I_L$}&\\
+            (2)\qquad\quad\ \ \qquad\dot n &= (n_\infty(V_m)-n)/\tau_n(V_m)&\\
+            \dot m &= (m_\infty(V_m)-m)/\tau_m(V_m)&\\
+            \dot h &= (h_\infty(V_m)-h)/\tau_h(V_m)&\\
+            \end{flalign*}
         \end{itemize}
 
     \section{Einheiten}
@@ -95,6 +116,7 @@
         LTD - Long Term Depression\\
         LTP - Long Term Potention\\
         LTU - Linear Threshold Unit\\
+        ODE - Ordinary Differential Equation\\
         SAC - Selective Attention Chip\\
         SSM - Soft State Machine\\
         STDP - Spike Timing Dependent Plasticity\\
@@ -119,13 +141,14 @@
         \item[Stanford] Kwabena Boahen
         \item[Gif-sur-Yvette CNRS] Andrew P Davison (pyNN)
         \item[Talence] Sylvie Renaud
-        \item[Lausanne EPFL] Henry Makram, Eilif Benjamin Muller,
-             Wulfram Gerstner,Marc-Oliver Gewaltig (Nest)
+        \item[Lausanne EPFL] Henry Makram, Eilif Benjamin Muller, Wulfram
+             Gerstner, Marc-Oliver Gewaltig
         \item[Jülich] Markus Diesmann, Moritz Helias, Jochen Martin Eppler
-        \item[Olso] Jan G Bjaalie ( Neuroinformatics)
+        \item[Oslo] Jan G Bjaalie (Neuroinformatics)
         \item[Edinburgh] James A Bednar
         \item[New Haven, Yale] Michael Hines
         \item[Other] Carver Mead, Misha Maowald, Lynn Conway
+        \item[San Francisco] Eugene M. Izhikevich, Todd Hylton
         \end{description}
 
     \section{Notizen zu wichtigen Arbeiten}
@@ -226,38 +249,78 @@
         \subsection{Sheik 2011: Systematic configuration and automatic tuning of
             neuromorphic Systems}
             \begin{itemize}
+            \item relationship between parameters model, software, hardware
+                  non-linear
             \item modular configuration framework for multi-chip neuromorphic
                   VLSI and automatic mapping from parameters to circuit biases
                   \begin{itemize}
                   \item uses generic models for parameter translation routines
+                        (e.g. circuit, synape)
                   \item does not require detailed knowledge of hardware
-                  \item can optimize parameter state search and evaluate
+                  \item can optimize parameter search and evaluate
                         effectiveness of parameter translations
+                  \item if desired configuration/state is reached maintain the
+                        system
                   \item pyNCS: hardware interface and model abstraction
                   \item pyTune: defines high-lvl params as functions of high- or
-                        low-lvl params
+                        low-lvl params and optimizes cost-functions with
+                        experiment output
                   \end{itemize}
-            \item relationship between parameters model, software, hardware
-                  non-linear
-            \item
+            \item high level formal description and automation of parameter
+                  optimization problem
+            \item pyNCS server-client architecture $\rightarrow$ multi-client
+                  support, load sharing, remote access
+            \item to integrate a new system, we need files describing:
+                  \begin{itemize}
+                  \item funcional blocks (neurons, E/I synapses, etc.)
+                  \item setup (how many chips, which measurement instruments,
+                        etc.)
+                  \item topology of neural network
+                  \item low- and high-level parameter mapping using hierachical
+                        scheme
+                  \end{itemize}
             \end{itemize}
 
         \subsection{Gao 2012: Dynamical System Guided Mapping of Quantitative
             Neuronal Models Onto Neuromorphic Hardware}
+            \begin{itemize}
+            \item Quantitative Mapping Method using dynamical system theory
+                  \begin{enumerate}
+                  \item calibrate on-chip bias generators on custom HW
+                  \item estimate key mapping parameters (with set of linear
+                        relationships with static input)
+                  \end{enumerate}
+            \item Jenson-Shannon divergence reduced to 10\% between 3 different
+                  chips (mapping method/shuffled control) and $\mu_{T_{ISI}} =
+                  3.4\%$
+            \item
+            \end{itemize}
 
         \subsection{Grassia 2011: Tunable neuromimetic integrated system for
             emulating cortical neuron models}
+            \begin{itemize}
+            \item
+            \end{itemize}
 
         \subsection{Brüderle Dissertation 2009: Neuroscientific Modeling with a
             Mixed-Signal VLSI Hardware System}
+            \begin{itemize}
+            \item
+            \end{itemize}
 
         \subsection{Brüderle 2011: A Comprehensive Workflow for General-Purpose
             Neural Modeling with Highly Configurable Neuromorphic Hardware
             Systems}
+            \begin{itemize}
+            \item
+            \end{itemize}
 
         \subsection{Schwartz Dissertation 2011: Reproducing Biologically
             Realistic Regimes on a Highly-Accelerated Neuromorphic Hardware
             System}
+            \begin{itemize}
+            \item
+            \end{itemize}
 
     \section{Mögliche wichtige Arbeiten}
         \begin{itemize}
@@ -274,6 +337,12 @@
 
     \section{Notizen}
         \begin{itemize}
+        \item Vorteile von neuromorpher Hardware gegenüber Softwaresimulation:
+              \begin{itemize}
+              \item Massiv Parallele Operationen
+              \item Niedriger Energieverbrauch
+              \item Verbesserte Skalierbarkeit
+              \end{itemize}
         \item iterative Parametersuche kann durch Heuristik verbessert werden
               \\(Russel, Orchard, Etienne-Cummings 2007)
         \item IAF sind strombasiert
@@ -293,10 +362,27 @@
               Komplexität $\rightarrow$ analystisch lösbar
         \item Nicht vorhandene Parameter mit nichtlinearen Abhängigkeiten müssen
               experimentell bestimmt werden
-        \item Arten von Kalibration:
+        \item Arten von Kalibration ver 1:
               \begin{enumerate}
-              \item Brute-force (beschleunigt, Brüderle) (heuristisch, ad-hoc)
-              \item model-basierte LTU-approximation (Neftci)
+              \item modellose brute-force Verhaltensanpassung
+                    \cite{arthur2007SynSilGamRhy} (beschleunigt,Brüderle)
+                    (heuristisch, ad-hoc)
+              \item modelbasierte nichtlineare Optimierung (LTU-approximation,
+                    Neftci)
+              \item suche um manuell bestimmte Operating Points (Boahen)
+              \item software (mismatch unbeachtet)
+              \item hybride
+              \end{enumerate}
+        \item Arten von Kalibration ver 2:
+              \begin{enumerate}
+              \item modellos (adhoc) / modellbasiert (ODE Synthetisierung,
+                    Zustandsvariablen als Strombiasabbildung)
+              \item Approximierung zu einfachen Model (z.B. LTU, Neftci)
+              \item iterative Biasanpassung durch Intuition/Heuristik
+                    \cite{arthur2007SynSilGamRhy}/ nichtlineare
+                    Optimierungsalgorithmen mit Softwaresimulationreferenz
+                    \cite{sheik2011Sysconauttunneusys} (+ kompensiert
+                    HWAbweichungen)
               \item suche um manuell bestimmte Operating Points (Boahen)
               \item software (mismatch unbeachtet)
               \item hybride
@@ -305,11 +391,14 @@
               Kalibrationsungenauigkeiten
         \item ca. 2010: automatisiertes VLSI Mapping noch heuristische Ad-hoc
               Kalibrationsroutinen
+        \item Beispiel einer Kostenfunktion: $(r-r_{desired})^{2}$
+        \item Jenson-Shannon Divergenz als Equivalenzgrad von Verteilungen
         \end{itemize}
 
     \section{Kleine nützliche Wortsammlung}
         \begin{itemize}
         \item parameter estimation/extraction/translation/mapping
+        \item quantitative link between parameters of NModels/electronic analogs
         \item parameter space
         \item population activity measurements
         \item abstract computational layer
@@ -328,4 +417,12 @@
               Herstellung
         \end{itemize}
 
+
+    \addcontentsline{toc}{section}{Literatur}
+
+    \bibliographystyle{abbrvdin}
+    \bibliography{literatur}
+
+%     \addcontentsline{toc}{section}{Glossary}
+%     \printglossary
 \end{document}
