@@ -11,6 +11,8 @@
 \usepackage[]{graphicx}
 \usepackage[left=2.5cm, right=2.5cm, top=3cm, bottom=4cm]{geometry}
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cite}
 % \usepackage{epstopdf}
 % \usepackage{float}
 % \usepackage{flafter}
@@ -26,7 +28,6 @@
 % \usepackage{ragged2e}
 % \usepackage{tikz}
 % \usepackage{pgf}
-\usepackage{cite}
 % \usepackage{setspace}
 % \usepackage[automark, komastyle, nouppercase]{scrpage2}
 % \usepackage{pdfpages}
@@ -138,7 +139,7 @@
               Thomas Pfeil
         \item[Stockholm] Anders Lansner, Jeanette Hellgren Kotaleski
         \item[Stockholm INCF] Sean L Hill
-        \item[Stanford] Kwabena Boahen
+        \item[Stanford] Kwabena Boahen, Peiran Gao
         \item[Gif-sur-Yvette CNRS] Andrew P Davison (pyNN)
         \item[Talence] Sylvie Renaud
         \item[Lausanne EPFL] Henry Makram, Eilif Benjamin Muller, Wulfram
@@ -290,10 +291,23 @@
                   \item estimate key mapping parameters (with set of linear
                         relationships with static input)
                   \end{enumerate}
+            \item mathematical model analysis to determine linear relationship
+                  \begin{itemize}
+                  \item e.g. $f_{spike}(v_{input})$ non linear \& $v_{input}
+                        (I_{bias1},I_{bias2})$ \& $I_{bias1}(\nu)\ I_{bias2}
+                        (\nu)$, $\nu$ as mapping parameter
+                  \item sweep currents, record spike rates, nonlinear fit of
+                        analytical solution $\rightarrow$ naive, adhoc, unsafe
+                  \item alternative: $v_{input}=0.5\curvearrowright$ bifurkation
+                        $\curvearrowright$ bias currents constraints
+                        $\curvearrowright$ obtain $\nu$ with linear fit
+                  \end{itemize}
+            \item experiment: QIAF model with bias generator and high-troughput
+                  spike based mapping procedure
+            \item
             \item Jenson-Shannon divergence reduced to 10\% between 3 different
                   chips (mapping method/shuffled control) and $\mu_{T_{ISI}} =
                   3.4\%$
-            \item
             \end{itemize}
 
         \subsection{Grassia 2011: Tunable neuromimetic integrated system for
@@ -375,17 +389,20 @@
               \end{enumerate}
         \item Arten von Kalibration ver 2:
               \begin{enumerate}
-              \item modellos (adhoc) / modellbasiert (ODE Synthetisierung,
-                    Zustandsvariablen als Strombiasabbildung)
-              \item Approximierung zu einfachen Model (z.B. LTU, Neftci)
+              \item modellos (adhoc)\cite{arthur2007SynSilGamRhy} vs
+                    modellbasiert (ODE Synthetisierung, Zustandsvariablen als
+                    Strombias)
+              \item Approximierung zu einfachen Model (z.B. LTU
+                    \cite{neftci2011SysMetConVLSNetSpiNeu})
               \item iterative Biasanpassung durch Intuition/Heuristik
-                    \cite{arthur2007SynSilGamRhy}/ nichtlineare
+                    \cite{arthur2007SynSilGamRhy}/nichtlineare
                     Optimierungsalgorithmen mit Softwaresimulationreferenz
                     \cite{sheik2011Sysconauttunneusys} (+ kompensiert
                     HWAbweichungen)
+              \item mathematische Modelanalyse um lineare Beziehungen
+                    festzustellen \cite{gao2012Dynsysguimapquaneumodontneuhar}
               \item suche um manuell bestimmte Operating Points (Boahen)
               \item software (mismatch unbeachtet)
-              \item hybride
               \end{enumerate}
         \item Fehlerarten: Hardware-Nichtlinearitäten, Transistor Mismatch,
               Kalibrationsungenauigkeiten
@@ -393,6 +410,15 @@
               Kalibrationsroutinen
         \item Beispiel einer Kostenfunktion: $(r-r_{desired})^{2}$
         \item Jenson-Shannon Divergenz als Equivalenzgrad von Verteilungen
+        \end{itemize}
+
+    \section{Notizen zur Aufgabe}
+        \begin{itemize}
+        \item Das Wissen zur Hardware sprengt den Rahmen und Methoden von anderen
+              Lehrstühlen basieren auf diesem Wissen (Sheik nicht ?!)
+        \item Messprotokolle sollen HW-unabhängig sein
+        \item Zustand mit Boundaries hervorrufen $\rightarrow$ Komplexität
+              einschränken
         \end{itemize}
 
     \section{Kleine nützliche Wortsammlung}
@@ -417,11 +443,8 @@
               Herstellung
         \end{itemize}
 
-
-    \addcontentsline{toc}{section}{Literatur}
-
     \bibliographystyle{abbrvdin}
-    \bibliography{literatur}
+    \bibliography{referenzen}
 
 %     \addcontentsline{toc}{section}{Glossary}
 %     \printglossary
