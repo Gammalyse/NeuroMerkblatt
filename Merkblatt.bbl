@@ -20,14 +20,35 @@
 \newblock {In: }\emph{Circuits and Systems I: Regular Papers, IEEE Transactions
   on} 59 (2012), Nr. 10, S. 2383--2394
 
-\bibitem[3]{neftci2011SysMetConVLSNetSpiNeu}
+\bibitem[3]{izhikevich2004WhiModtoUseCorSpiNeu_3}
+\textsc{Izhikevich}, E.~M.:
+\newblock {Which Model to Use for Cortical Spiking Neurons?}
+\newblock {In: }\emph{IEEE Transactions on Neural Networks} 15 (2004),
+  September, Nr. 5, 1063--1070.
+\newblock  \url{http://dx.doi.org/10.1109/TNN.2004.832719}. --
+\newblock DOI 10.1109/TNN.2004.832719. --
+\newblock ISSN 1045--9227. --
+\newblock Yaeger references this article Hereby you are granted the permission
+  to freely use this figure in your publications provided that (1) You add the
+  line Electronic version of the figure and reproduction permissions are freely
+  available at www.izhikevich.com to your paper and (2) you send me a copy of
+  your paper when it is published.
+
+\bibitem[4]{neftci2011SysMetConVLSNetSpiNeu}
 \textsc{Neftci}, E.  ; \textsc{Chicca}, E.  ; \textsc{Indiveri}, G.   ;
   \textsc{Douglas}, R.~J.:
 \newblock {A Systematic Method for Configuring VLSI Networks of Spiking
   Neurons.}
 \newblock {In: }\emph{Neural Computation} 23 (2011), Nr. 10, S. 2457--2497
 
-\bibitem[4]{sheik2011Sysconauttunneusys}
+\bibitem[5]{russell2007ConSpiCenPatGenNetBipWalUsiGenAlg}
+\textsc{Russell}, A.  ; \textsc{Orchard}, G.   ; \textsc{Etienne-Cummings}, R.
+  :
+\newblock {Configuring of Spiking Central Pattern Generator Networks for
+  Bipedal Walking Using Genetic Algorthms.}
+\newblock {In: }\emph{{ISCAS}}, IEEE, 2007, S. 1525--1528
+
+\bibitem[6]{sheik2011Sysconauttunneusys}
 \textsc{Sheik}, S.  ; \textsc{Stefanini}, F.  ; \textsc{Neftci}, E.  ;
   \textsc{Chicca}, E.   ; \textsc{Indiveri}, G. :
 \newblock {Systematic configuration and automatic tuning of neuromorphic

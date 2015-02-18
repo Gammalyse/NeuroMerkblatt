@@ -14,7 +14,7 @@
 \usepackage{amssymb}
 \usepackage{cite}
 % \usepackage{epstopdf}
-% \usepackage{float}
+\usepackage{float}
 % \usepackage{flafter}
 % \usepackage[section]{placeins}
 % \usepackage{caption}
@@ -51,7 +51,7 @@
 % \makeindex
 % \setlength{\mathindent}{0pt}
 \newcommand*\mean[1]{\overline{#1}}
-
+% \numberwithin{equation}{subsection}
 \date{01/23/15}
 
 \begin{document}
@@ -60,39 +60,50 @@
     \newpage
     \section{Formeln}
         \begin{itemize}
+        \item Hodgkin-Huxley (Hodgkin 1952):
+            \begin{subequations}
+                \begin{flalign}
+                C_m\frac{\mathrm d}{\mathrm d t}V_m &= I
+                -\overbrace{g_Kn^4(V_m-E_K)}^\text{$I_K$}
+                -\overbrace{g_{Na}m^3h(V_m-E_{Na})}^\text{$I_{Na}$}
+                -\overbrace{g_L(V_m-E_L)}^\text{$I_L$}&\\
+                \dot n &= (n_\infty(V_m)-n)/\tau_n(V_m)&\\
+                \nonumber\dot m &= (m_\infty(V_m)-m)/\tau_m(V_m)&\\
+                \nonumber\dot h &= (h_\infty(V_m)-h)/\tau_h(V_m)&
+                \end{flalign}
+            \end{subequations}
         \item Axon-Hillock IAF (Mead 1989):
-            \begin{flalign*}
+            \begin{flalign}
             C_{m}\frac{\mathrm d}{\mathrm d t}V_{m} &= I_{in}(t)-\beta,
             \quad V_m(t)\in(0,\varTheta)&
-            \end{flalign*}
+            \end{flalign}
         \item CLIAF (Neftci 2011):
-            \begin{flalign*}
+            \begin{flalign}
             C_{m}\frac{\mathrm d}{\mathrm d t}V_{m} &= I_{in}(t)-\beta+I_{fb}e^
             {\frac{\kappa}{U_{T}}(V_{m}-V_{th})}&
-            \end{flalign*}
+            \end{flalign}
         \item Quadratic IAF (Gerstner 2002):
-            \begin{flalign*}
+            \begin{flalign}
             \tau_{m}\frac{\mathrm d}{\mathrm d t}V_{m} &= a_{0}(u-u_{rest})(u-
             u_{thresh})+RI,\quad a_{0}>0&
-            \end{flalign*}
-        \item AdEx IAF ()
-            \begin{flalign*}
-            (1)\quad-C_{m}\frac{\mathrm d}{\mathrm d t}V_{m} &= g_1(V_m-E_1)-g_1
-            \Delta_te^{\frac{V_m-V_t}{\Delta_t}}+w&\\
-            &\qquad+g_e(t)(V_m-E_e)&\\
-            &\qquad+g_i(t)(V_m-E_i)&\\
-            (2)\qquad-\tau_w\frac{\mathrm d}{\mathrm d t}w &= w-a(V_m-E_1),\quad
-            \end{flalign*}
-        \item Hodgkin-Huxley ()
-            \begin{flalign*}
-            (1)\qquad\ C_m\frac{\mathrm d}{\mathrm d t}V_m &= I
-            -\overbrace{g_Kn^4(V_m-E_K)}^\text{$I_K$}
-            -\overbrace{g_{Na}m^3h(V_m-E_{Na})}^\text{$I_{Na}$}
-            -\overbrace{g_L(V_m-E_L)}^\text{$I_L$}&\\
-            (2)\qquad\quad\ \ \qquad\dot n &= (n_\infty(V_m)-n)/\tau_n(V_m)&\\
-            \dot m &= (m_\infty(V_m)-m)/\tau_m(V_m)&\\
-            \dot h &= (h_\infty(V_m)-h)/\tau_h(V_m)&\\
-            \end{flalign*}
+            \end{flalign}
+        \item Izhikevich (Izhikevich 2003):
+            \begin{subequations}
+                \begin{flalign}
+                \dot V_{m} &= 0.04 V_{m}^2 + 5 V_{m} + 140 - u + I &\\
+                \dot u &= a(b V_m - u)&
+                \end{flalign}
+            \end{subequations}
+        \item AdEx IAF (Brette 2005):
+            \begin{subequations}
+                \begin{flalign}
+                -C_{m}\frac{\mathrm d}{\mathrm d t}V_{m} &= g_1(V_m-E_1)-g_1
+                \Delta_te^{\frac{V_m-V_t}{\Delta_t}}+w&\\
+                \nonumber&\qquad+g_e(t)(V_m-E_e)&\\
+                \nonumber&\qquad+g_i(t)(V_m-E_i)&\\
+                -\tau_w\frac{\mathrm d}{\mathrm d t}w &= w-a(V_m-E_1),\quad
+                \end{flalign}
+            \end{subequations}
         \end{itemize}
 
     \section{Einheiten}
@@ -105,7 +116,9 @@
         AER - Address Event Representation\\
         CCN - Cooperative and Competitive Network\\
         CLIAF - Constant Leaky Integrate And Fire neuron\\
+        CV - Coefficient of Variation\\
         DAC - Digital to Analog Converter\\
+        DAP - Depolarizing After-Potential\\
         DNC - Digital Network Chip\\
         DPI - Differential Pair Integrator\\
         EPSC - Excitatory Postsynaptic Current\\
@@ -132,6 +145,7 @@
 
     \section{Bekannte Forscher}
         \begin{description}
+        \item[University of Lorraine] Laure Buhry (HH parameter estimation)
         \item[La Jolla] Emre Neftci
         \item[Bielefeld] Elisabetta Chicca, Rodney J. Douglas
         \item[Zürich] Giacomo Indiveri, Christian G Mayr
@@ -157,14 +171,15 @@
         \subsection{Neftci 2010: A Device Mismatch Compensation Method for VLSI
             Neural Networks}
             \begin{itemize}
-            \item transistor properties mismatch as major VLSI problem
+            \item motivation: transistor properties mismatch as major VLSI
+                  problem
             \item mismatch compensation algorithm through connectivity
             \item no layout disadvantage (no extra HW memory)
             \item exploits Address-Event Representation
             \item metaplasticity as homeostatic mechanism for homogeneous
                   population response
-            \item change connectivity profile (\# or \%) to normalize response
-                  strength
+            \item metaplasticity: change connectivity profile (\# or \%) to
+                  normalize response strength
             \item test: sWTA as possible general purpose structure
             \item synaptic scaling method to normalize response of VLSI sWTA with
                   HW respresentation and constraints (e.g. spiking output)
@@ -190,7 +205,7 @@
                   auto determining of biases taking mismatch in account
             \item motivation: determining bias voltages corresponding to model
                   params through iterative search $\rightarrow$ resource and
-                  time consuming \& no predictive power (must be executed afer
+                  time consuming \& no predictive power (must be executed after
                   every param change)
             \item automatic bidirectional parameter mapping technique (high-level
                   NN simulation $\leftarrow\rightarrow$ VLSI)
@@ -300,18 +315,31 @@
                         analytical solution $\rightarrow$ naive, adhoc, unsafe
                   \item alternative: $v_{input}=0.5\curvearrowright$ bifurkation
                         $\curvearrowright$ bias currents constraints
-                        $\curvearrowright$ obtain $\nu$ with linear fit
+                        $\curvearrowright$ obtain $\nu$ with linear least square
+                        fit
                   \end{itemize}
+            \item improve mapping throughput by exploiting high bandwidth spike
+                  communication and through random and uniform subsampling
             \item experiment: QIAF model with bias generator and high-troughput
-                  spike based mapping procedure
-            \item
-            \item Jenson-Shannon divergence reduced to 10\% between 3 different
-                  chips (mapping method/shuffled control) and $\mu_{T_{ISI}} =
-                  3.4\%$
+                  spike based mapping procedure onto 3 different chips
+            \item throughput improved by over 16 fold
+            \item Jenson-Shannon divergence reduced to 10\% between chips
+                  (mapping method/shuffled control) and $\mu_{T_{ISI}} =3.4\%$
+            \item large variations of mapping parameters between chips
+                  (parameters B onto chip A results in high JS-div)
             \end{itemize}
 
         \subsection{Grassia 2011: Tunable neuromimetic integrated system for
             emulating cortical neuron models}
+            \begin{itemize}
+            \item full-custom fitting method in voltage-clamp mode on HH-Chip
+                  "Galway"
+            \item 
+            \end{itemize}
+
+        \subsection{Schwartz Dissertation 2011: Reproducing Biologically
+            Realistic Regimes on a Highly-Accelerated Neuromorphic Hardware
+            System}
             \begin{itemize}
             \item
             \end{itemize}
@@ -325,13 +353,6 @@
         \subsection{Brüderle 2011: A Comprehensive Workflow for General-Purpose
             Neural Modeling with Highly Configurable Neuromorphic Hardware
             Systems}
-            \begin{itemize}
-            \item
-            \end{itemize}
-
-        \subsection{Schwartz Dissertation 2011: Reproducing Biologically
-            Realistic Regimes on a Highly-Accelerated Neuromorphic Hardware
-            System}
             \begin{itemize}
             \item
             \end{itemize}
@@ -358,7 +379,7 @@
               \item Verbesserte Skalierbarkeit
               \end{itemize}
         \item iterative Parametersuche kann durch Heuristik verbessert werden
-              \\(Russel, Orchard, Etienne-Cummings 2007)
+              \cite{russell2007ConSpiCenPatGenNetBipWalUsiGenAlg}
         \item IAF sind strombasiert
         \item Das erste IAF Modell ist das Axon-Hillock Modell von Mead
         \item Das Axon-Hillock-Modell nutzt einen konstanten Strom als leak statt
@@ -405,12 +426,38 @@
               \item software (mismatch unbeachtet)
               \end{enumerate}
         \item Fehlerarten: Hardware-Nichtlinearitäten, Transistor Mismatch,
-              Kalibrationsungenauigkeiten
+              Kalibrationsungenauigkeiten,
         \item ca. 2010: automatisiertes VLSI Mapping noch heuristische Ad-hoc
               Kalibrationsroutinen
         \item Beispiel einer Kostenfunktion: $(r-r_{desired})^{2}$
-        \item Jenson-Shannon Divergenz als Equivalenzgrad von Verteilungen
+        \item Jenson-Shannon Divergenz als Equivalenzgrad von Verteilungen (gut
+              zum Vergleich zwischen Modell und Schaltung)
         \end{itemize}
+
+    \section{Nützliche Abbildungen}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1.00\textwidth]{figures/izhikevich_2004.png}
+            \caption{Summary of neuro-computational properties exhibited by the
+                     simple model (2.1)–(2.2). The figure is reproduced, with
+                     permission, from www.izhikevich.com.
+                     \cite{izhikevich2004WhiModtoUseCorSpiNeu_3}}
+            \label{fig:spiking_summary}
+        \end{figure}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1.00\textwidth]{figures/izhikevich_2004_3.png}
+            \caption{Comparison of the neuro-computational properties of spiking
+                     and bursting models; Fig. \ref{fig:spiking_summary}. “\# of
+                     FLOPS” is an approximate number of floating point operations
+                     (addition, multiplication, etc.) needed to simulate the
+                     model during a 1 ms time span. Each empty square indicates
+                     the property that the model should exhibit in principle (in
+                     theory) if the parameters are chosen appropriately, but the
+                     author failed to find the parameters within a reasonable
+                     period of time.\cite{izhikevich2004WhiModtoUseCorSpiNeu_3}}
+            \label{fig:model_comparison}
+        \end{figure}
 
     \section{Notizen zur Aufgabe}
         \begin{itemize}
