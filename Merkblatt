@@ -119,18 +119,23 @@
         CV - Coefficient of Variation\\
         DAC - Digital to Analog Converter\\
         DAP - Depolarizing After-Potential\\
+        DE - Differential Evolution\\
         DNC - Digital Network Chip\\
         DPI - Differential Pair Integrator\\
         EPSC - Excitatory Postsynaptic Current\\
         FPGA - Field Programmable Gate Array\\
+        FS - Fast Spiking\\
         HH - Hodgkin Huxley neuron model\\
         HICANN - High Input Count Analog Neural Network\\
         IAF - Integrate-and-fire neuron model\\
+        IB - Intrinsically Bursting\\
         ISI - InterSpike Intervall\\
         LTD - Long Term Depression\\
         LTP - Long Term Potention\\
+        LTS - Low Threshold Spiking\\
         LTU - Linear Threshold Unit\\
         ODE - Ordinary Differential Equation\\
+        RS - Regular Spiking\\
         SAC - Selective Attention Chip\\
         SSM - Soft State Machine\\
         STDP - Spike Timing Dependent Plasticity\\
@@ -139,8 +144,13 @@
     \section{Definitionen}
         \begin{itemize}
         \item AER: Communication Protocoll which describes spikes from sources
+        \item depolarizing:
+        \item dynamical clamp: hybrid method, communication between silicon and
+              biological neurons
+        \item hyperpolarizing:
         \item overconstrained: equations outnumber the unknowns
         \item raster plot: spikes of neurons plotted in time
+        \item voltage clamp:
         \end{itemize}
 
     \section{Bekannte Forscher}
@@ -333,8 +343,12 @@
             emulating cortical neuron models}
             \begin{itemize}
             \item full-custom fitting method in voltage-clamp mode on HH-Chip
-                  "Galway"
-            \item 
+                  "Galway" (15-28 parameters)
+            \item can reproduce fast spiking, regular spiking, intrinsically
+                  bursting, and low-threshold spiking
+            \item analog neurons, digital communication between, dynamic clamp
+                  hybrid method with real neurons
+            \item automated tuning through differential evolution algorithm
             \end{itemize}
 
         \subsection{Schwartz Dissertation 2011: Reproducing Biologically
